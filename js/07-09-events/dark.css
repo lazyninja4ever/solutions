@@ -1,0 +1,25 @@
+body {
+  background-color: #212121;
+  width: 50%;
+  margin: 50px auto auto auto;
+  font-family: arial;
+}
+
+.heading {
+  margin: 30px 0 0 0;
+  color: white;
+}
+
+p {
+  margin: 5px 0 0 0;
+  color: #a9a9a9;
+}
+
+button {
+  margin-top:  50px;
+  color: white;
+  background-color: grey;
+  height: 50px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}

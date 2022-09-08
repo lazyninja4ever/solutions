@@ -1,0 +1,18 @@
+.neutral{
+  background-color: white;
+}
+
+.anim {
+  background-color: red;
+  animation-name: party;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes party {
+  0%   {background-color: red;}
+  25%  {background-color: yellow;}
+  50%  {background-color: cyan;}
+  75% {background-color: lightgreen;}
+  100%   {background-color: red;}
+}

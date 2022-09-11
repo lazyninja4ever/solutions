@@ -4,11 +4,59 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>opg 4 solution</title>
+  <style type="text/css">
+    .modal{
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-	<form>
-		<input type="text" name="name">
+	<form id="inputForm" >
+    <label for="iName">Name:</label>
+		<input type="text" id="iName">
+    <label for="iAge">Age:</label>
+    <input type="number" id="iAge">
+    <label for="iAddress">Address:</label>
+    <input type="text" id="iAddress">
+    <label for="iHobbi">Hobby:</label>
+    <input type="text" id="iHobbi">
+    <input type="submit" id="Submit">
 	</form>
 
+  <section id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close">&times;</span>
+      <p id="pName">Name goes here</p>
+      <p id="pAge">Age goes here</p>
+      <p id="pAddress">Adress goes here</p>
+      <p id="pHobby">Hobby goes here</p>
+    </div>
+  </section>
+
+
+  <script type="text/javascript" src="opg4.js"></script>
 </body>
 </html>

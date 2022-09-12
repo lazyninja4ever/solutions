@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <button id="flip">Flip a coin</button>
+  <p id="output"></p>
+  <p id="count"></p>
+
+
+  <script type="text/javascript">
+    let btn = document.getElementById('flip');
+    let res = document.getElementById('output');
+    let countShow = document.getElementById('count');
+    let count = 0;
+
+    let flipCoin = (n) => {
+      return Math.floor(Math.random() * n + 1);
+    }  
+
+    let play = () => {
+      let side = flipCoin(2);
+      let show;
+
+      if(side == 1){
+        show = "Got lucky";
+        count++
+      } else {
+        show = "Not this time";
+      }
+      res.innerHTML = show;
+      countShow.innerHTML = `Slået krone ${count} gange`;
+    }
+
+    btn.addEventListener('click', play);
+
+
+  </script>
+
+</body>
+</html>

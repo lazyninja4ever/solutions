@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <h2 id="outputP"></h2>
+  <script type="text/javascript">
+    let outputEl = document.getElementById('outputP');
+    let input = prompt('et bogstav');
+    let output;
+
+    switch(input){
+      case 'a':
+        output = 'attribute';
+        break;
+      case 'b':
+        output = 'bracket';
+        break;
+      case 'c':
+        output = 'console';
+        break;
+      case 'd':
+        output = 'document';
+        break;
+      case 'e':
+        output = 'element';
+        break;
+      case 'f':
+        output = 'fun';
+        break;
+      case 'g':
+        output = 'goat';
+        break;
+      case 'h':
+        output = 'hobby';
+        break;
+      case 'i':
+        output = 'iteration';
+        break;
+      case 'j':
+        output = 'juice';
+        break;
+      case 'k':
+        output = 'king';
+        break;
+      case 'l':
+        output = 'list';
+        break;
+      case 'm':
+        output = 'monster';
+        break;
+      case 'n':
+        output = 'neuron';
+        break;
+      case 'o':
+        output = 'overtime';
+        break;
+      case 'p':
+        output = 'postponed';
+        break;
+      case 'q':
+        output = 'quiet';
+        break;
+      case 'r':
+        output = 'reset';
+        break;  
+      case 's':
+        output = 'slow';
+        break;
+      case 't':
+        output = 'tower';
+        break;
+      case 'u':
+        output = 'undone';
+        break;
+      case 'v':
+        output = 'very';
+        break;
+      case 'w':
+        output = 'worried';
+        break;
+      case 'x':
+        output = '"I dunno, make one up"';
+        break;
+      case 'y':
+        output = 'yourself';
+        break;
+      case 'z':
+        output = 'zebra';
+        break;
+      default:
+        output = 'nothing'
+    }
+
+    outputEl.innerHTML = `You input ${input} and got ${output}.`
+  </script>
+
+</body>
+</html>

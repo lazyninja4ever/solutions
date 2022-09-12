@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    
+    const countdown = (n) => {
+      if (n === 0)
+        console.log('Go!');
+      else {
+        console.log(n);
+        countdown(n - 1);
+      }
+    }
+
+    countdown(10);
+
+  </script>
+</body>
+</html>

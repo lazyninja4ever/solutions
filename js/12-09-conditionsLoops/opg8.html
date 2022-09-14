@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    function dice(n) {
+      return Math.floor(Math.random() * n + 1);
+    }
+
+    let ones = 0;
+    let twos = 0;
+    let threes = 0;
+    let fours = 0;
+    let fives = 0;
+    let sixes = 0;
+
+    let countDice = (n) => {
+      for(let i =0; i< n; i++){
+        let roll = dice(6);
+        switch(roll){
+          case 1:
+            ones++;
+            break;
+          case 2:
+            twos++;
+            break;
+          case 3:
+            threes++;
+            break;
+          case 4:
+            fours++;
+            break;
+          case 5:
+            fives++;
+            break;
+          case 6:
+            sixes++;
+            break;
+          default:
+        }
+      }
+      console.log(`rullede et ${ones} gange`);
+      console.log(`rullede to ${twos} gange`);
+      console.log(`rullede tre ${threes} gange`);
+      console.log(`rullede fire ${fours} gange`);
+      console.log(`rullede fem ${fives} gange`);
+      console.log(`rullede seks ${sixes} gange`);
+
+    }
+
+    countDice(Number(prompt('antal slag: ')));
+
+  </script>
+
+</body>
+</html>

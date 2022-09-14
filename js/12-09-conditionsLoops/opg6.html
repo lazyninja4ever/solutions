@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+  <input type="" name="" id="input">
+  <button id="btn">Ask me!</button>
+  <p id="answer">Answer:</p>
+
+  <script type="text/javascript">
+    let input = document.getElementById('input');
+    let btn = document.getElementById('btn');
+    let nsr = document.getElementById('answer');
+
+    let ask = () => {
+      qst = input.value;
+      switch(qst){
+        case 'what is your age':
+          nsr.innerHTML = 'I am two days old';
+          break;
+        case 'what day of the week':
+          let d = new Date;
+          d = d.getDay();
+          d == 0 ? d = 7: 
+          nsr.innerHTML = `it is day ${d} of the week`;
+          break;
+        case 'where does a queen live':
+          nsr.innerHTML = 'in a castle';
+          break;
+        case 'what is 2 + 2':
+          nsr.innerHTML = '4';
+          break;
+        case 'is magic real':
+          nsr.innerHTML = 'maybe';
+          break;
+        case 'what is your name':
+          nsr.innerHTML = 'chatty';
+          break;
+        case 'when is your birthday':
+          nsr.innerHTML = 'next year';
+          break;
+        case 'can ducks fly':
+          nsr.innerHTML = 'who knows?';
+          break;
+        case 'is the moon real':
+          nsr.innerHTML = 'yes';
+          break;
+        default:
+          nsr.innerHTML = "I don't have an answer to that";
+      }
+    }
+
+    btn.addEventListener('click', ask);
+  </script>
+
+</body>
+</html>

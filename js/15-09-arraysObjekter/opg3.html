@@ -7,15 +7,14 @@
 </head>
 <body>
   <script type="text/javascript">
-    let sum = (n) => {
-      if (n == 0){
-        return 0;
-      } else {
-        return n + sum(n-1);
-      }
+    let person = {
+      firstName:'John',
+      lastName: 'Doe',
+      age: 42,
+      eyeColor: 'blå'
     }
 
-    console.log(sum(3));
+    console.log(`${person.firstName} ${person.lastName} er ${person.age} år gammel og har ${person.eyeColor} øjne.`);
   </script>
 
 </body>

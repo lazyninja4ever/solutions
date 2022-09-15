@@ -6,16 +6,20 @@
   <title></title>
 </head>
 <body>
+
   <script type="text/javascript">
-    let sum = (n) => {
-      if (n == 0){
-        return 0;
-      } else {
-        return n + sum(n-1);
+    let myMath = {
+      sum: function(x, y){
+        return x + y;
+      },
+      product: function(x, y){
+        return x * y;
       }
     }
 
-    console.log(sum(3));
+
+    console.log(myMath.sum(2, 5));
+    console.log(myMath.product(2, 5));
   </script>
 
 </body>

@@ -41,21 +41,49 @@
        year: Number(form.elements['year'].value),
        actors: [form.elements['actor1'].value, form.elements['actor2'].value, form.elements['actor3'].value]
       }
-      console.log(newFilm);
+      film.push(newFilm);
+      upDateList();
+    }
+
+    const addItem = (film, index) =>{
+      let newLi = document.createElement('li');
+      let newP = document.createElement('p');
+      let actorList = '';
+      for (let j = 0; j < film.actors.length; j++) {
+          actorList += ` ${film.actors[j]}, `;
+        }
+      newP.innerHTML = `"${film.title}"" er instrueret af ${film.director}, udgivet i ${film.year} og har ${actorList} på rollelisten <button data-key="${index}" onClick="deleteItem(this)">X</button>`;
+
+      newLi.append(newP);
+      list.append(newLi);
+    }
+
+    const deleteItem = (e) =>{
+      console.log(e.dataset.key);
+      film.splice(e.dataset.key, 1);
       upDateList();
     }
 
     const upDateList = () => {
       list.innerHTML = '';
+      film.forEach(addItem);
+      /*list.innerHTML = '';
       for(let i = 0; i< film.length; i++){
-        let newLi = document.createElement('p');
+        let newLi = document.createElement('li');
+        let newP = document.createElement('p');
+        let delBtn = document.createElement('button');
         let actorList = '';
         for (var j = 0; j < film[i].actors.length; j++) {
           actorList += ` ${film[i].actors[j]}, `;
         }
-        newLi.innerHTML = `"${film[i].title}"" er instrueret af ${film[i].director}, udgivet i ${film[i].year} og har ${actorList} på rollelisten`;
+        newP.innerHTML = `"${film[i].title}"" er instrueret af ${film[i].director}, udgivet i ${film[i].year} og har ${actorList} på rollelisten`;
+        delBtn.innerHTML = 'X';
+
+        newLi.append(newP);
+        newLi.append(delBtn);
         list.append(newLi);
-      }
+
+      }*/
     }
     upDateList();
     form.addEventListener('submit', addMovie);

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>opg 8</title>
+</head>
+<body>
+  <script type="text/javascript">
+    let numb = prompt('number:');
+
+
+    const addDash = (array)  =>{
+      let newString = array[0];
+      array = String(array);
+      for(let i = 1; i < array.length; i++){
+        if (array[i-1] % 2 === 0 && array[i] % 2 === 0)
+          newString += '-';
+        newString += array[i];       
+      }
+      return newString;
+    }
+
+    console.log(addDash(numb));
+  </script>
+
+</body>
+</html>

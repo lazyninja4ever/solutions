@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <form id="form">
+    <input type="text" name="title" placeholder="Titel">
+    <input type="text" name="author" placeholder="Instruktør">
+    <input type="number" name="year" placeholder="Indspildningsår">
+    <label for="hasRead">Læst</label>
+    <input type="checkbox" name="isRead">
+    <button type="submit">Tilføj film</button>
+  </form>
+  <h2>Læste bøger:</h2>
+  <ul id="read">
+  </ul>
+  <h2>Ulæste bøger:</h2>
+  <ul id="unread">
+    
+  </ul>
+
+  <script type="text/javascript">
+    const form = document.getElementById('form');
+    const read = document.getElementById('read');
+    const unread = document.getElementById('unread');
+
+    let books = [
+    {
+      title: 'V for Vendetta',
+      author: 'James McTeigue',
+      year: 2005,
+      isRead: true
+    }];
+
+    const addBook = (e) => {
+      e.preventDefault();
+
+
+      let newBook = {
+       title: form.elements['title'].value,
+       author: form.elements['author'].value,
+       year: Number(form.elements['year'].value),
+       isRead: form.elements['isRead'].checked
+      }
+      books.push(newBook);
+      upDateList();
+    }
+
+    const addItem = (book, index) =>{
+      let newLi = document.createElement('li');
+      let newP = document.createElement('p');
+
+      newP.innerHTML = `"${book.title}" er skrevet af ${book.author} og udgivet i ${book.year} <button data-key="${index}" onClick="checkItem(this)">[|]</button> <button data-key="${index}" onClick="deleteItem(this)">X</button>`;
+
+      newLi.append(newP);
+      if(book.isRead){
+        read.append(newLi);
+      } else{
+        unread.append(newLi);
+
+      }
+    }
+
+    const checkItem = (e) => {
+
+      if (books[e.dataset.key].isRead) {
+        books[e.dataset.key].isRead = false;
+      } else{
+        books[e.dataset.key].isRead = true
+      }
+         upDateList();
+    }
+
+    const deleteItem = (e) =>{
+      console.log(e.dataset.key);
+      books.splice(e.dataset.key, 1);
+      upDateList();
+    }
+
+    const upDateList = () => {
+      read.innerHTML = '';
+      unread.innerHTML = '';
+      books.forEach(addItem);
+    }
+
+    upDateList();
+    form.addEventListener('submit', addBook);
+
+
+
+  </script>
+
+</body>
+</html>

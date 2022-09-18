@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <form id="form">
+    <input type="text" name="title" placeholder="Titel">
+    <input type="text" name="director" placeholder="Instruktør">
+    <input type="number" name="year" placeholder="Indspildningsår">
+    <input type="text" name="actor1" placeholder="Skuespiller">
+    <input type="text" name="actor2" placeholder="Skuespiller">
+    <input type="text" name="actor3" placeholder="Skuespiller">
+    <button type="submit">Tilføj film</button>
+  </form>
+
+  <ul id="displayFilm">
+    
+  </ul>
+
+  <script type="text/javascript">
+    const form = document.getElementById('form');
+    const list = document.getElementById('displayFilm');
+
+    let film = [
+    {
+      title: 'V for Vendetta',
+      director: 'James McTeigue',
+      year: 2005,
+      actors: ['Hugo Weaving', 'Natalie Portman', 'Stephen Fry']
+    }];
+
+    const addMovie = (e) => {
+      e.preventDefault();
+
+      let newFilm = {
+       title: form.elements['title'].value,
+       director: form.elements['director'].value,
+       year: Number(form.elements['year'].value),
+       actors: [form.elements['actor1'].value, form.elements['actor2'].value, form.elements['actor3'].value]
+      }
+      console.log(newFilm);
+      upDateList();
+    }
+
+    const upDateList = () => {
+      list.innerHTML = '';
+      for(let i = 0; i< film.length; i++){
+        let newLi = document.createElement('p');
+        let actorList = '';
+        for (var j = 0; j < film[i].actors.length; j++) {
+          actorList += ` ${film[i].actors[j]}, `;
+        }
+        newLi.innerHTML = `"${film[i].title}"" er instrueret af ${film[i].director}, udgivet i ${film[i].year} og har ${actorList} på rollelisten`;
+        list.append(newLi);
+      }
+    }
+    upDateList();
+    form.addEventListener('submit', addMovie);
+
+
+
+  </script>
+
+</body>
+</html>

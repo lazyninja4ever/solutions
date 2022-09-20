@@ -11,26 +11,39 @@
     let objects = [
       {
         greeting: "hi",
+        name: 'obj1',
         sayHi: function(){
           console.log(this.greeting);
+        },
+        present: function(){
+          console.log(`${this.greeting} my name is ${this.name}`);
         }
+
       },
       {
         greeting: 'hello',
+        name: 'obj2',
         sayHi: function(){
           console.log(this.greeting);
+        },
+          present: function(){
+          console.log(`${this.greeting} my name is ${this.name}`);
         }
       },
       {
         greeting: "'ollo",
+        name: 'obj3',
         sayHi: function(){
           console.log(this.greeting);
+        },
+        present: function(){
+          console.log(`${this.greeting} my name is ${this.name}`);
         }
       }
     ];
 
     for(let i = 0; i < objects.length; i++){
-      objects[i].sayHi();
+      objects[i].present();
     }
 
   </script>

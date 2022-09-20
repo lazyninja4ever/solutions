@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>opg1 - solution</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    let objects = [
+      {
+        greeting: "hi",
+        sayHi: function(){
+          console.log(this.greeting);
+        }
+      },
+      {
+        greeting: 'hello',
+        sayHi: function(){
+          console.log(this.greeting);
+        }
+      },
+      {
+        greeting: "'ollo",
+        sayHi: function(){
+          console.log(this.greeting);
+        }
+      }
+    ];
+
+    for(let i = 0; i < objects.length; i++){
+      objects[i].sayHi();
+    }
+
+  </script>
+
+</body>
+</html>

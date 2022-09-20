@@ -9,11 +9,23 @@
   <nav>
     <a href="opg2index.html">Home</a>
     <a href="page1.html">Page 1 - sum of division </a>
-    <a href="page3.html">Page 2 - sum cifre</a>
-    <a href="page4.html">Page 3 - pattern</a>
-    <a href="page5.html">Page 4 - least common multiple</a>
-    <a href="page6.html">Page 5 - die roll</a>
+    <a href="page2.html">Page 2 - sum cifre</a>
+    <a href="page3.html">Page 3 - pattern</a>
+    <a href="page4.html">Page 4 - least common multiple</a>
+    <a href="page5.html">Page 5 - die roll</a>
   </nav>
+
+  <script type="text/javascript">
+    let rows = Number(prompt('number of rows'));
+
+    for (var i = 1; i <= rows; i++) {
+      let output = '';
+      for (var j = 1; j <=i; j++) {
+        output += '*';
+      }
+      console.log(output);
+    }
+  </script>
 
 </body>
 </html>

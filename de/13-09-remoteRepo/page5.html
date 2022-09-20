@@ -9,11 +9,48 @@
   <nav>
     <a href="opg2index.html">Home</a>
     <a href="page1.html">Page 1 - sum of division </a>
-    <a href="page3.html">Page 2 - sum cifre</a>
-    <a href="page4.html">Page 3 - pattern</a>
-    <a href="page5.html">Page 4 - least common multiple</a>
-    <a href="page6.html">Page 5 - die roll</a>
+    <a href="page2.html">Page 2 - sum cifre</a>
+    <a href="page3.html">Page 3 - pattern</a>
+    <a href="page4.html">Page 4 - least common multiple</a>
+    <a href="page5.html">Page 5 - die roll</a>
   </nav>
+  <p id="output"></p>
+
+  <script type="text/javascript">
+    let output = document.getElementById('output');
+    let die1 = Number(prompt('first die:'));
+    let die2 = Number(prompt('second die:'));
+    let expCount = Number(prompt('number of experiments'));
+    let sum = 0;
+
+    const dice =  (eyes) => {
+      return Math.floor(Math.random() * eyes + 1);
+    }
+
+
+    for(let i = expCount; i > 0; i-- ){
+      let count = 1;
+      while(true){
+        let roll1 = dice(6);
+        let roll2 = dice(6);
+
+        if(roll1 === die1 && roll2 === die2 || roll1 === die2 && roll2 === die1){
+          console.log(`${count}: ${roll1} ${roll2}`);
+          break;
+        }
+
+        count ++
+      }
+      sum += count;
+
+    }
+
+    console.log(`total ${sum} / ${expCount}`);
+    console.log(`avg = ${sum/expCount}`);
+    output.innerHTML = sum/expCount;
+
+
+  </script>
 
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    /*
+    gem tal 1
+    gem tal 2
+    gem tal 3
+
+    sammenlign 1 og 2 gem det største i highest
+
+    sammenlig 3 med highest og gem det er størst
+
+    returner highest
+    */
+
+    let numb1 = Number(prompt('number:'));
+    let numb2 = Number(prompt('number:'));
+    let numb3 = Number(prompt('number:'));
+
+    let compare = (x, y, z) => {
+      let high = x;
+      high = y > high ? y : high;
+      high = z > high ? z : high;
+      return high;
+    }
+
+    console.log(compare(numb1, numb2, numb3));
+
+  </script>
+
+</body>
+</html>

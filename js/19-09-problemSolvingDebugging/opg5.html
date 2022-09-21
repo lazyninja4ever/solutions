@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    let world = [
+      {
+        code: 'NL',
+        name: 'Nordland',
+        popul: 22720000
+      },
+      {
+        code: 'SL',
+        name: 'Sydland',
+        popul: 6188000
+
+      },
+      {
+        code: 'ML',
+        name: 'Midland',
+        popul: 24318000
+
+      }
+    ];
+
+    let lang = [
+      {
+        lc: 'NL',
+        sprog: 'fransk',
+        isOff: false,
+        perc: 0.9
+      },
+      {
+
+        lc: 'NL',
+        sprog: 'spansk',
+        isOff: true,
+        perc: 32.1
+      },
+      {
+        lc: 'NL',
+        sprog: 'svensk',
+        isOff: true,
+        perc: 52.4
+      },
+      {
+        lc: 'NL',
+        sprog: 'norsk',
+        isOff: false,
+        perc: 1.9
+      },
+      {
+        lc: 'NL',
+        sprog: 'dansk',
+        isOff: false,
+        perc: 8.8
+      },
+      {
+        lc: 'SL',
+        sprog: 'engelsk',
+        isOff: false,
+        perc: 9.7
+      },
+      {
+        lc: 'SL',
+        sprog: 'portugisisk',
+        isOff: true,
+        perc: 62.2
+      },
+      {
+        lc: 'SL',
+        sprog: 'dansk',
+        isOff: false,
+        perc: 23.2
+      },
+      {
+        lc: 'ML',
+        sprog: 'græsk',
+        isOff: false,
+        perc: 2.0
+      },
+      {
+        lc: 'ML',
+        sprog: 'italiensk',
+        isOff: false,
+        perc: 3.8
+      },
+      {
+        lc: 'ML',
+        sprog: 'engelsk',
+        isOff: false,
+        perc: 10.9
+      },
+      {
+        lc: 'ML',
+        sprog: 'portugisisk',
+        isOff: false,
+        perc: 4.4
+      },
+      {
+        lc: 'ML',
+        sprog: 'tysk',
+        isOff: false,
+        perc: 1.8
+      },
+      {
+        lc: 'ML',
+        sprog: 'dansk',
+        isOff: true,
+        perc: 72.6
+      }
+    ];
+
+    let langCount = [
+      {lang: 'dansk', pep: 0},
+      {lang: 'tysk', pep: 0},
+      {lang: 'portugisisk', pep: 0},
+      {lang: 'engelsk', pep: 0},
+      {lang: 'italiensk', pep: 0},
+      {lang: 'græsk', pep: 0},
+      {lang: 'norsk', pep: 0},
+      {lang: 'svensk', pep: 0},
+      {lang: 'spansk', pep: 0},
+      {lang: 'fransk', pep: 0}
+    ];
+    
+    //gå over alle sprog individuelt
+    for(let i = 0; i < lang.length; i++){
+      //  find lande population baseret på lande kode
+      let cc = world.find(item => item.code === lang[i].lc);
+      let curPop = cc.popul;
+      //find counter for specifik sprog
+      let popCount = langCount.find(item => item.lang === lang[i].sprog);
+      //  del lande population med 100 og gang med procent
+      //  læg til total for sprog
+      popCount.pep += curPop /100 * lang[i].perc;
+    }
+
+    console.log(langCount);
+
+  </script>
+</body>
+</html>

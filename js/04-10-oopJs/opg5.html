@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form">
+        <input type="text" name="title" placeholder="Titel">
+        <input type="text" name="author" placeholder="Instruktør">
+        <input type="number" name="year" placeholder="Indspildningsår">
+        <label for="hasRead">Læst</label>
+        <input type="checkbox" name="isRead">
+        <button type="submit">Tilføj film</button>
+      </form>
+      <section>
+          <h2>Læste bøger:</h2>
+          <ul id="read"></ul>
+      </section>
+      <section>
+          <h2>Ulæste bøger:</h2>
+          <ul id="unread"></ul>
+      </section>
+
+    <script>
+        const  form = document.getElementById('form');
+        const read = document.getElementById('read');
+        const unread = document.getElementById('unread');
+        const books = [];
+
+        class Book{
+            #title;
+            #author;
+            #year;
+            #isRead;
+
+            constructor(bTitle, bAuthor, bYear, bIsRead){
+                this.#title = bTitle;
+                this.#author = bAuthor;
+                this.#year = bYear;
+                this.#isRead = bIsRead;
+            }
+
+            toSting(){
+                return `"${this.#title}"" as written by ${this.#author}, and published in ${this.#year}`
+            }
+            getIsRead(){
+                return this.#isRead;
+            }
+            
+            toggleIsRead(){
+                this.#isRead = !this.#isRead;
+            }
+        }
+
+        function createBtn(index, eventString, functionString, text){
+                let btn = document.createElement('button');
+                btn.setAttribute("data-key", index);
+                btn.setAttribute(eventString, functionString);
+                btn.innerHTML = text;
+                return btn
+            }
+
+        books.push(new Book('V for Vendetta','James McTeigue', 2005, true));
+
+        const addItem = (book, index) => {
+            let newLi = document.createElement('li');
+            let newP = document.createElement('p');
+
+            newP.innerHTML = book.toSting();
+
+            let delBtn = createBtn(index, 'onClick', 'deleteItem(this)', 'X');
+            let checkBtn = createBtn(index, 'onClick', 'checkItem(this)', '[|]');
+            newP.append(checkBtn);
+            newP.append(delBtn);
+
+            newLi.append(newP);
+            if(book.getIsRead()){
+                read.append(newLi);
+            } else{
+                unread.append(newLi);
+            }
+        }
+
+        const addBook = (e) =>{
+            e.preventDefault();
+
+            let title = form.elements['title'].value;
+            let author = form.elements['author'].value;
+            let year = Number(form.elements['year'].value);
+            let isRead = form.elements['isRead'].checked;
+
+            let book = new Book(title, author, year, isRead);
+            books.push(book);
+
+            upDateList();
+        }
+
+        const checkItem = (e) =>{
+            books[e.dataset.key].toggleIsRead();
+            upDateList();
+        }
+
+        const deleteItem = (e) =>{
+            books.splice(e.dataset.key, 1);
+            upDateList();
+        }
+
+        const upDateList = () =>{
+            read.innerHTML = '';
+            unread.innerHTML = '';
+            books.forEach(addItem);
+        }
+
+        upDateList();
+        form.addEventListener('submit', addBook);
+
+
+        //add book function
+    </script>
+</body>
+</html>

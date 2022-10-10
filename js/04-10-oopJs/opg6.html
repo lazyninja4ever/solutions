@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class ChessPiece{
+            _type;
+            _colour = 1;
+            _position = []
+
+            constructor(col, pos){
+                this._colour = col;
+                this._position = pos;
+            }
+
+            moveToPos(pos){
+                if(this._validateSpot(pos)){
+                    this._position = pos;
+                    return true;
+                } else {
+                    return false;
+                }
+                //check if patterne matches
+                //update position
+            }
+            _validateSpot(pos){
+                return false;
+                //check if pattern matches
+            }
+
+            getPosition(){
+                return this._position;
+            }
+            getType(){
+                return this._type;
+            }
+        }
+
+        class Pawn extends ChessPiece{
+            _type = 'pawn'
+            constructor(col, pos){
+                super(col, pos);
+            }
+
+            _validateSpot(pos){
+                if(this._colour === 1){
+                    if(this._position[0] === pos[0] && (this._position[1]+1 === pos[1] || this._position[1] + 2 === pos[1])){
+                        return true;
+                    } 
+                } else if (this._colour === 0){
+                    if(this._position[0] === pos[0] && (this._position[1] -1  === pos[1] || this._position[1] - 2 === pos[1])){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        class Knight extends ChessPiece{
+            _type = 'knight'
+            constructor(col, pos){
+                super(col, pos);
+            }
+
+            _validateSpot(pos){
+                let xDiff = Math.abs(this._position[0] - pos[0]);
+                let yDiff = Math.abs(this._position[1] - pos[1]);
+
+                if(xDiff === 1 && yDiff === 2 || xDiff === 2 && yDiff === 1){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+
+        class King extends ChessPiece{
+            _type = 'king';
+            constructor(col, pos){
+                super(col, pos);
+            }
+
+            _validateSpot(pos){
+                let xDiff = Math.abs(this._position[0] - pos[0]);
+                let yDiff = Math.abs(this._position[1] - pos[1]);
+                //lodret eller vandret
+                if(xDiff === 0 && yDiff === 1 || xDiff === 1 && yDiff === 0){
+                    return true;
+                    //diagonal
+                } else if( xDiff === 1 && yDiff === 1){
+                    return true;
+                } else{
+                    return false;
+                }
+
+            }
+        }
+
+        let pawn = new Pawn(0, [1, 1]);
+        let knight = new Knight(0, [4, 4]);
+        let king = new King(1, [4, 4]);
+        console.log(pawn.moveToPos([1, -1]) + " " + pawn.getPosition());
+        console.log(knight.moveToPos([5, 5]) + " " + knight.getPosition());
+        console.log(king.moveToPos([3, 3]) + " " + king.getPosition());
+    </script>
+</body>
+</html>

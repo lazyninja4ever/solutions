@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <h1 id="greeting"></h1>
+  <button id="btn"> delete name</button>
+
+  <script type="text/javascript">
+    let output = document.getElementById('greeting');
+    let btn = document.getElementById('btn');
+
+    let getCookie = (cookieName) =>{
+      let name = cookieName + '=';
+      let cookie = document.cookie;
+      let cookieArray = cookie.split(';');
+      for(let i = 0; i<cookieArray.length; i++){
+        let c = cookieArray[i].trim();
+
+        if(c.indexOf(name) == 0){
+          return c.substring(name.length, c.length);
+        }
+      }
+      return '';
+    }
+
+    let name = getCookie('name5');
+    if(!name){
+      name = prompt('yourName');
+      document.cookie = `name5=${name}`
+    } 
+
+    output.innerHTML = `Welcome ${name}`;
+
+    const delName = () =>{
+      document.cookie = `name5=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/Users/mettetanggaardohlsen/Documents/E22/undervisning/solutionRepo/js/22-09-cookiesLocalStorage;`
+    }
+
+    btn.addEventListener('click', delName);
+
+  </script>
+
+</body>
+</html>

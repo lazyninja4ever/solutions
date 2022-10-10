@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+<p id="outputP"></p>
+
+  <script type="text/javascript">
+    let hobby = prompt('enter hobby');
+    document.cookie =`hobby=${hobby}`;
+    let outputEl = document.getElementById('outputP');
+
+    let data = document.cookie;
+
+    let getCookie = (cookieName) =>{
+      let name = cookieName + '=';
+      let cookie = document.cookie;
+      let cookieArray = cookie.split(';');
+      for(let i = 0; i<cookieArray.length; i++){
+        let c = cookieArray[i].trim();
+
+        if(c.indexOf(name) == 0){
+          return c.substring(name.length, c.length);
+        }
+      }
+      return '';
+    }
+
+    outputP.innerHTML = getCookie('hobby');
+
+  </script>
+
+</body>
+</html>

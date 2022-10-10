@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Shape{
+            _name = "shape";
+
+            printName(){
+                return this._name
+            }
+
+            getArea(){
+                return "none";
+            }
+        }
+
+        class Square extends Shape{
+            #length;
+            #height;
+            _name = "square";
+            constructor(l, h){
+                super();
+                this.#length = l;
+                this.#height = h;
+            }
+            getArea(){
+                return this.#length * this.#height;
+            }
+
+        }
+
+        class Circle extends Shape{
+            #radius;
+            _name = "circle";
+            constructor(r){
+                super();
+                this.#radius = r;
+            }
+
+            getArea(){
+                return Math.PI * (this.#radius * this.#radius);
+            }
+            getComf(){
+                return Math.PI * (this.#radius * 2);
+            }
+        }
+
+        class Triangle extends Shape{
+            #width;
+            #height;
+            _name = "triangle";
+            constructor(w, h){
+                super();
+                this.#height = h;
+                this.#width = w;
+            }
+
+            getArea(){
+                return this.#height * this.#width * 0.5;
+            }
+        } 
+
+        function sumArea(shape1, shape2){
+            return `${shape1.printName()} and ${shape2.printName()} has a combined area of ${shape1.getArea() + shape2.getArea()}`;
+        }
+
+
+        let polygon = new Shape();
+        console.log(polygon.printName());
+
+        let rectangle = new Square(2,4);
+        console.log(rectangle.getArea());
+
+        let round = new Circle(3);
+        console.log(round.getArea());
+        console.log(round.getComf());
+
+        let pointy = new Triangle(4, 2);
+        console.log(pointy.getArea());
+
+        console.log(sumArea(round, pointy));
+
+    </script>
+</body>
+</html>

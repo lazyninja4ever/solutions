@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <h1 id="greeting"></h1>
+  <button id="btn"> delete name</button>
+  <button id="btn2"> delete hobby</button>
+
+  <script type="text/javascript">
+    let output = document.getElementById('greeting');
+    let btn = document.getElementById('btn');
+    let btn2 = document.getElementById('btn2');
+
+    let name = localStorage.getItem('name');
+    let hobby = localStorage.getItem('hobby');
+
+    if(!name){
+      name = prompt('enter your name');
+      localStorage.setItem('name', name);
+    }
+    if(!hobby){
+      hobby = prompt('enter a hobby');
+      localStorage.setItem('hobby', hobby);
+    }
+
+    output.innerHTML = `Welcome ${name}, i heard your hobby is ${hobby}`;
+
+
+
+    const delName = () =>{
+      localStorage.removeItem('name');
+    }
+    const delHob = () =>{
+      localStorage.removeItem('hobby');
+    }
+
+    btn.addEventListener('click', delName);
+    btn2.addEventListener('click', delHob);
+
+  </script>
+
+</body>
+</html>

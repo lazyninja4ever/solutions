@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <h1 id="greeting"></h1>
+  <button id="btn"> delete name</button>
+
+  <script type="text/javascript">
+    let output = document.getElementById('greeting');
+    let btn = document.getElementById('btn');
+
+
+    let name = sessionStorage.getItem('name');
+
+    if(name){
+      output.innerHTML = `Welcome ${name}`
+    } else{
+      let newName = prompt('enter your name');
+      sessionStorage.setItem('name', newName);
+      output.innerHTML = `Welcome ${newName}`
+    }
+
+    const delName = () =>{
+      sessionStorage.clear();
+    }
+
+    btn.addEventListener('click', delName);
+
+  </script>
+
+</body>
+</html>

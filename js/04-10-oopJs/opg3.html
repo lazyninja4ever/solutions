@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Pet{
+            #name;
+            #owner;
+            constructor(pName, oName){
+                this.#name = pName;
+                this.#owner = oName;
+            }
+
+            makeSound(){
+                return "exhale";
+            }
+        }
+
+        class Dog extends Pet{
+            constructor(pName, oName){
+                super(pName, oName);
+            }
+            makeSound(){
+                return "woof";
+            }
+        }
+
+        class Cat extends Pet{
+            #remainingLives;
+
+            constructor(pName, oName, lives){
+                super(pName, oName)
+                this.#remainingLives = lives
+            }
+            makeSound(){
+                return "meow";
+            }
+        }
+
+        function animalsTalk(animal){
+            console.log(animal.makeSound());
+        }
+        let peter = new Pet('Peter', 'Petra');
+        let douglas = new Dog('Douglas', 'Dografer');
+        let catlyn = new Cat('Catlyn', 'Cathryn', 8);
+
+        animalsTalk(peter);
+        animalsTalk(douglas);
+        animalsTalk(catlyn);
+
+    </script>
+</body>
+</html>

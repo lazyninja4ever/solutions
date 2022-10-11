@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function times4(x){
+        return new Promise((resolve) => {
+            console.log('started x4');
+            setTimeout((y) => {
+                console.log('times 4 to ' + y);
+                resolve(y * 4);
+            }, 2000, x);
+        });
+    }
+
+    function add3(x){
+        return new Promise((resolve) => {
+            console.log('started +3');
+            setTimeout((y) => {
+                console.log('add 3 to ' + y);
+                resolve(y + 3);
+            }, 5000, x);
+        });
+    }
+
+    function displayRes(res){
+        return new Promise ((resolve) => {
+            console.log(res);
+        });
+    }
+
+
+    function doOperation(numb) {
+        times4(numb)
+        .then((val) =>{
+         return add3(val);
+        })
+        .then((res) =>{
+            return displayRes(res);
+        });
+    }
+
+    doOperation(3);
+</script>
+</body>
+</html>

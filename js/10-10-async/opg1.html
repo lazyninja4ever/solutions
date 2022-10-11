@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <script>
+    function times4(x, callback){
+        console.log('started x4');
+        setTimeout((y) =>{
+            console.log('finished x4');
+            callback(y * 4);
+        }, 2000, x);
+    }
+
+    function add3(x, callback){
+        console.log('started +3');
+        setTimeout((y) =>{
+            console.log('finished +3');
+            callback(y + 3);
+        }, 5000, x);
+    }
+
+    function displayRes(res){
+        console.log(res);
+    }
+
+    function doOperation(numb) {
+        console.log(numb);
+        times4(numb, (res1) => {
+            add3(res1, (res2) =>{
+                displayRes(res2);
+            });
+        });
+    }
+
+    doOperation(3);
+</script>
+    
+</body>
+</html>

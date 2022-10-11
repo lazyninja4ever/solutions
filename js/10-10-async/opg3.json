@@ -1,0 +1,8 @@
+{"persons" : 
+  [
+    {"name":"Kim", "age":45, "height":165 , "hobby": "cars"},
+    {"name":"John", "age":5, "height": 178, "hobby": "computers"},
+    {"name":"Alex", "age":33, "height": 195, "hobby": "knitting"},
+    {"name":"Andy", "age":51, "height": 170, "hobby": "dancing"}
+  ]
+}

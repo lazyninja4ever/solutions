@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="dispList"></ul>
+
+    <script>
+        const outputEl = document.getElementById('dispList');
+        function getJSON(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function(){
+                handleResult(this.responseText);
+            };
+            xmlhttp.open("GET", "opg3.JSON");
+            xmlhttp.send();
+        }
+
+        function handleResult(data){
+                res = JSON.parse(data);
+                const pplArray = res.persons;
+                for (let i in pplArray){
+                    let newLi = document.createElement('li');
+                    newLi.innerHTML = `${pplArray[i].name} is ${pplArray[i].age} years old, ${pplArray[i].height} cm tall, and likes ${pplArray[i].hobby}.`;
+                    outputEl.append(newLi);
+                }
+        }
+
+        getJSON();
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="booksBtn">Load books</button>
+    <ul id="dispList"></ul>
+
+
+    <script>
+        const outputEl = document.getElementById('dispList');
+        const bookBtn = document.getElementById('booksBtn');
+        function getJSON(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function(){
+                handleResult(this.responseText);
+            };
+            xmlhttp.open("GET", "opg5.json");
+            xmlhttp.send();
+        }
+
+        function handleResult(data){
+                res = JSON.parse(data);
+                const bookArray = res.books;
+                outputEl.innerHTML = '';
+                for (let i in bookArray){
+                    let newLi = document.createElement('li');
+                    newLi.innerHTML = `${bookArray[i].title} was written in ${bookArray[i].year} by ${bookArray[i].author}`;
+                    outputEl.append(newLi);
+                }
+        }
+
+        bookBtn.addEventListener('click', getJSON);
+
+    </script>
+    
+</body>
+</html>

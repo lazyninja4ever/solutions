@@ -31,7 +31,7 @@
             xmlhttp.onload = function(){
                 handleResult(this.responseText, outputEl, type);
             };
-            //brug kilden til at hente  data fra den rigtige fil
+            //brug src til at hente  data fra den rigtige fil
             xmlhttp.open("GET", `${src}`);
             xmlhttp.send();
         }
@@ -55,7 +55,7 @@
 
         function checkContent(type, outputEl){
             //hvis der ikke allerede er noget i listen
-            //den er kun tom første gang vi skal have fat i data
+            //den er kun tom første gang vi skal have fat i data !!OBS!! det virker kun hvis det data der hentes er statisk
             if(outputEl.innerHTML == ''){
                 //baseret på hvad vi vil vises sættes kilden til vores data
                 let source = type === 'book' ? 'opg5.json' : 'movieOpg6.json';

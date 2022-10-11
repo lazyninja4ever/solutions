@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="booksBtn">Load books</button>
+    <button id="moviesBtn">Load movies</button>
+    <ul id="bookList" class="hidden"></ul>
+    <ul id="movieList" class="hidden"></ul>
+
+
+    <script>
+        const bookOutputEl = document.getElementById('bookList');
+        const movieOutputEl = document.getElementById('movieList');
+        const bookBtn = document.getElementById('booksBtn');
+        const movieBtn = document.getElementById('moviesBtn');
+
+        function getJSON(src, type, outputEl){
+            //udskriver første gang man henter data
+            console.log('ajax call for ' + type);
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function(){
+                handleResult(this.responseText, outputEl, type);
+            };
+            //brug kilden til at hente  data fra den rigtige fil
+            xmlhttp.open("GET", `${src}`);
+            xmlhttp.send();
+        }
+
+        function handleResult(data, outputEl, type){
+            res = JSON.parse(data);
+            //hent den første property value i vores objekt, vores book/movie array
+            const entryArray = res[Object.keys(res)[0]];
+                for (let i in entryArray){
+                    let newLi = document.createElement('li');
+                    //output data baseret på hvilken type det er
+                    if(type == 'book'){
+                        newLi.innerHTML = `${entryArray[i].title} was written in ${entryArray[i].year} by ${entryArray[i].author}`;
+                    } else {
+                        newLi.innerHTML = `${entryArray[i].title} was released in ${entryArray[i].year} and directed by ${entryArray[i].director}`;
+                    }
+                    outputEl.append(newLi);
+                }
+                showLists(outputEl);
+        }
+
+        function checkContent(type, outputEl){
+            //hvis der ikke allerede er noget i listen
+            //den er kun tom første gang vi skal have fat i data
+            if(outputEl.innerHTML == ''){
+                //baseret på hvad vi vil vises sættes kilden til vores data
+                let source = type === 'book' ? 'opg5.json' : 'movieOpg6.json';
+                getJSON(source, type, outputEl);
+            } else{
+                //hvis der ligger noget i vores liste hald showlist med den rigtige liste
+                showLists(outputEl);
+            }
+        }
+
+        function showLists(outputEl){
+            //gem begge lister og vis derefter den rigtige
+            movieOutputEl.classList.add('hidden');
+            bookOutputEl.classList.add('hidden');
+            outputEl.classList.remove('hidden');
+        }
+
+        //event listeners på knapper der kalder chechContent,
+        // med den type af liste vi vil have og det output element listen skal vises i
+        //hhv. den for bøger eller film
+        bookBtn.addEventListener('click', function(){
+            checkContent('book', bookOutputEl);
+        });
+        movieBtn.addEventListener('click', function(){
+            checkContent('movie', movieOutputEl);
+        });
+
+    </script>
+    
+</body>
+</html>

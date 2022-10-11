@@ -42,21 +42,50 @@
         }
 
         class Pawn extends ChessPiece{
+            #firstMove;
             _type = 'pawn'
             constructor(col, pos){
                 super(col, pos);
+                this.#firstMove = true;
+            }
+
+            moveToPos(pos){
+                if(this._validateSpot(pos)){
+                    this._position = pos;
+                    this.#firstMove = false;
+                    return true;
+                } else {
+                    return false;
+                }
+                //check if patterne matches
+                //update position
             }
 
             _validateSpot(pos){
-                if(this._colour === 1){
-                    if(this._position[0] === pos[0] && (this._position[1]+1 === pos[1] || this._position[1] + 2 === pos[1])){
+                //edit to consider first move
+                let xDiff = Math.abs(this._position[0] - pos[0]);
+                //tager ikke absolut af yDiff fordi det har betydning om den går op eller ned
+                let yDiff = this._position[1] - pos[1];
+                //kan ikke gå til siden (medmindre den tager en anden brik, det tjekker vi ikke efter nu)
+                if(xDiff != 0){
+                    return false;
+                } 
+                //hvis brikken er hvis kan den gå i positiv y retning, ellers negativ
+                let rightDir = this._colour == 1 ? -1 : 1;
+
+                //hvis det er første gang den bevæger sig
+                if(this.#firstMove){
+                    //hvis den gå en eller to felter i den rigtige retning
+                    if(yDiff === rightDir || yDiff === rightDir*2){
                         return true;
-                    } 
-                } else if (this._colour === 0){
-                    if(this._position[0] === pos[0] && (this._position[1] -1  === pos[1] || this._position[1] - 2 === pos[1])){
+                    }
+                    //hvis det ikke første move
+                } else{
+                    if(yDiff === rightDir){
                         return true;
                     }
                 }
+
                 return false;
             }
         }
@@ -90,10 +119,7 @@
                 let xDiff = Math.abs(this._position[0] - pos[0]);
                 let yDiff = Math.abs(this._position[1] - pos[1]);
                 //lodret eller vandret
-                if(xDiff === 0 && yDiff === 1 || xDiff === 1 && yDiff === 0){
-                    return true;
-                    //diagonal
-                } else if( xDiff === 1 && yDiff === 1){
+                if(xDiff < 2 && yDiff < 2){
                     return true;
                 } else{
                     return false;
@@ -102,12 +128,72 @@
             }
         }
 
-        let pawn = new Pawn(0, [1, 1]);
+        class Queen extends ChessPiece{
+            _type = 'queen'
+            constructor(col, pos){
+                super(col, pos);
+            }
+
+            _validateSpot(pos){
+                let xDiff = Math.abs(this._position[0] - pos[0]);
+                let yDiff = Math.abs(this._position[1] - pos[1]);
+                //vandre og lodret
+                if(xDiff === 0 || yDiff === 0){
+                    return true;
+                    //diagonalt
+                } else if(xDiff === yDiff) {
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+
+        class Rook extends ChessPiece{
+            _type = 'rook';
+            constructor(col, pos){
+                super(col, pos);
+            }
+
+            _validateSpot(pos){
+                let xDiff = Math.abs(this._position[0] - pos[0]);
+                let yDiff = Math.abs(this._position[1] - pos[1]);
+
+                if(xDiff === 0 || yDiff === 0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        class Bishop extends ChessPiece{
+            _type = 'bishop';
+            constructor(col, pos){
+                super(col, pos);
+            }
+            _validateSpot(pos){
+                let xDiff = Math.abs(this._position[0] - pos[0]);
+                let yDiff = Math.abs(this._position[1] - pos[1]);
+
+                if(xDiff === yDiff){
+                    return true;
+                } else{
+                    return false;
+                }
+            }
+        }
+
+        let pawn = new Pawn(0, [2, 2]);
         let knight = new Knight(0, [4, 4]);
         let king = new King(1, [4, 4]);
+        let queen = new Queen(1, [5,6]);
+        console.log(pawn.moveToPos([2, 0]) + " " + pawn.getPosition());
+        console.log(pawn.moveToPos([2, -1]) + " " + pawn.getPosition());
         console.log(pawn.moveToPos([1, -1]) + " " + pawn.getPosition());
         console.log(knight.moveToPos([5, 5]) + " " + knight.getPosition());
-        console.log(king.moveToPos([3, 3]) + " " + king.getPosition());
+        console.log(king.moveToPos([4, 6]) + " " + king.getPosition());
+        console.log(queen.moveToPos([6, 8]) + " " + queen.getPosition());
     </script>
 </body>
 </html>

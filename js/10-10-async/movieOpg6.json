@@ -3,6 +3,14 @@
     {"title":"Movie1", "year":1990, "director":"Kim"},
     {"title":"Movie2", "year":2007, "director": "John"},
     {"title":"Movie3", "year":2021, "director": "James"},
-    {"title":"Movie4", "year":1985, "director": "Albert"}
+    {"title":"Movie4", "year":1985, "director": "Albert"},
+    {"title":"Movie5", "year":2021, "director": "Nicholai"},
+    {"title":"Movie6", "year":1898, "director": "Jim"},
+    {"title":"Movie7", "year":1967, "director": "Johnny"},
+    {"title":"Movie8", "year":2021, "director": "Bertran"},
+    {"title":"Movie9", "year":2022, "director": "Lars"},
+    {"title":"Movie10", "year":2007, "director": "Matty"},
+    {"title":"Movie11", "year":2008, "director": "Lilly"},
+    {"title":"Movie12", "year":2016, "director": "Jessica"}
   ]
 }

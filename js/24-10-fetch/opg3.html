@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inp">
+    <button id="btn">add input</button>
+    <p id="output"></p>
+    
+    <script>
+        const input = document.getElementById('inp');
+        const btn = document.getElementById('btn');
+        const output = document.getElementById('output');
+
+        const validateInput = () =>{
+            const data = input.value.toLowerCase();
+            try{
+                if(data[0] === 'a'){
+                    output.innerHTML = 'yay, we got an "a"'
+                }else if(data[0] == 'b'){
+                    throw 'no b\'s here'
+                } else {
+                    throw 'input did not start with "a"'
+                };
+            }
+            catch(error){
+                output.innerHTML = error;
+            }
+        }
+
+        btn.addEventListener('click', validateInput);
+    </script>
+    
+</body>
+</html>

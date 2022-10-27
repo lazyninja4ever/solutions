@@ -1,0 +1,20 @@
+{"cars" : [
+    {
+        "brand": "Hyundai",
+        "plateNumber": "XX03220",
+        "color": "gray",
+        "doors": 4
+    },
+    {
+        "brand": "Totota",
+        "plateNumber": "XX22000",
+        "color": "red",
+        "doors": 2
+    },
+    {
+        "brand": "VW",
+        "plateNumber": "XX99999",
+        "color": "pink",
+        "doors": 4
+    }
+]}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        /*source: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro*/
+    </style> 
+</head>
+<body>
+
+    <button id="btn">Load cars</button>
+    <table id="outputTable"></table>
+    <script>
+        const btn = document.getElementById('btn');
+        const outputEl = document.getElementById('outputTable');
+
+        async function get1(){
+            const res = await fetch('cars1.json');
+            const data = await res.json();
+            return data;
+        }
+
+        async function get2(){
+            const res = await fetch('cars2.json');
+            const data = await res.json();
+            return data;
+        }
+
+        async function get3(){
+            const res = await fetch('cars3.json');
+            const data = await res.json();
+            return data;
+        }
+
+        async function getCars (){
+            Promise.all([get1(), get2(), get3()]).then((values) => {
+            console.log(values);
+            let trHead = document.createElement('tr');
+            let tdBrand = document.createElement('th');
+            let tdColor = document.createElement('th');
+            let tdPlate = document.createElement('th');
+            let tdDoors = document.createElement('th');
+            
+            tdBrand.innerHTML = 'Brand';
+            tdColor.innerHTML = 'Color';
+            tdPlate.innerHTML = 'Plate number';
+            tdDoors.innerHTML = 'Number of doors';
+
+            trHead.append(tdBrand, tdColor, tdPlate, tdDoors);
+            outputEl.append(trHead);
+
+
+            for(i in values){
+                for (j in values[i].cars){
+                    let car = values[i].cars[j];
+                    let newTR = document.createElement('tr');
+
+                    let tdCarBrand = document.createElement('td');
+                    let tdCarColor = document.createElement('td');
+                    let tdCarPlate = document.createElement('td');
+                    let tdCarDoors = document.createElement('td');
+
+                    tdCarBrand.innerHTML = car.brand;
+                    tdCarColor.innerHTML = car.color;
+                    tdCarPlate.innerHTML = car.plateNumber;
+                    tdCarDoors.innerHTML = car.brand;
+
+                    newTR.append(tdCarBrand, tdCarColor, tdCarPlate, tdCarDoors);
+                    outputEl.append(newTR);
+
+                }
+            }
+        });
+        }
+
+        btn.addEventListener('click', getCars);
+
+
+       
+
+    </script>
+    
+</body>
+</html>

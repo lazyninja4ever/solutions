@@ -1,0 +1,20 @@
+{"cars" : [
+    {
+        "brand": "BMW",
+        "plateNumber": "XX20220",
+        "color": "black",
+        "doors": 4
+    },
+    {
+        "brand": "Nissan",
+        "plateNumber": "XX20000",
+        "color": "red",
+        "doors": 4
+    },
+    {
+        "brand": "Toyota",
+        "plateNumber": "XX22222",
+        "color": "blue",
+        "doors": 4
+    }
+]}

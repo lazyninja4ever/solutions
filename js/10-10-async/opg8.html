@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list"></ul>
+    <button id="addBtn">add to list</button>
+
+    <script>
+        const output = document.getElementById('list');
+        const addBtn = document.getElementById('addBtn');
+
+        let content;
+        let start = 0;
+        let increment = 2;
+
+        function getJSON(){
+            
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function(){
+                content = JSON.parse(this.responseText);
+                handleResult();
+            };
+            //brug src til at hente  data fra den rigtige fil
+            xmlhttp.open("GET", 'movieOpg6.json');
+            xmlhttp.send();
+        }
+
+        function handleResult(){
+            console.log(content);
+            for (let i = start; i < start + increment; i++){
+                let newLi = document.createElement('li');
+                //output data baseret på hvilken type det er
+                newLi.innerHTML = `${content.movies[i].title} was released in ${content.movies[i].year} and directed by ${content.movies[i].director}`;
+                output.append(newLi);
+            }
+            start += increment;
+        }
+
+        function checkContent(){
+            if(!content){
+                getJSON();
+            } else{
+                handleResult();
+            }
+
+        }
+
+
+        //event listeners på knapper der kalder chechContent,
+        // med den type af liste vi vil have og det output element listen skal vises i
+        //hhv. den for bøger eller film
+        addBtn.addEventListener('click', function(){
+            checkContent();
+        });
+
+    </script>
+</body>
+</html>

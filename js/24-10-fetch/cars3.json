@@ -1,0 +1,20 @@
+{"cars" : [
+    {
+        "brand": "Mercedes",
+        "plateNumber": "XX99000",
+        "color": "silver",
+        "doors": 4
+    },
+    {
+        "brand": "Chevrolet",
+        "plateNumber": "XX00999",
+        "color": "black",
+        "doors": 4
+    },
+    {
+        "brand": "Audi",
+        "plateNumber": "XX90099",
+        "color": "black",
+        "doors": 4
+    }
+]}

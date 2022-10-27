@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inp">
+    <button id="btn">add input</button>
+    <p id="output"></p>
+    <p id="errorOutput"></p>
+
+    <script>
+        const inputEl = document.getElementById('inp');
+        const btn = document.getElementById('btn');
+        const output = document.getElementById('output');
+        const eOut = document.getElementById('errorOutput');
+        const numberInput = [];
+        const min = 1;
+        const max = 10;
+        numberInput.push(Math.floor(Math.random()*max + 1));
+
+        function testValue(value){
+            return value === Number(inputEl.value);
+        }
+
+        const validateInput = () => {
+            let input = inputEl.value;
+            try{
+                if(input < min){
+                    throw 'number too low'
+                }
+                if (input > max){
+                   throw 'number too high'
+                }
+                if(numberInput.length === max){
+                    throw 'all numbers added'
+                }
+                if(numberInput.find(testValue)){
+                    throw 'number already in array';
+                }
+                
+                numberInput.push(Number(input));
+                output.innerHTML = `${input} added to array; array is now: ${numberInput}`
+
+            } catch(e){
+                eOut.innerHTML = e;
+            }
+
+        }
+
+        btn.addEventListener('click', validateInput);
+    </script>
+    
+</body>
+</html>

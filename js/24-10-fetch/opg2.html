@@ -17,22 +17,15 @@
         const bookBtn = document.getElementById('booksBtn');
         const movieBtn = document.getElementById('moviesBtn');
 
-        function getJSON(src, type){
-            //udskriver første gang man henter data
-            console.log('ajax call for ' + type);
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function(){
-                handleResult(this.responseText, type);
-            };
-            //brug src til at hente  data fra den rigtige fil
-            xmlhttp.open("GET", `${src}`);
-            xmlhttp.send();
+        async function getData(src, type){
+            const res = await fetch(src);
+            const data = await res.json();
+            handleResult(data, type);
         }
 
         function handleResult(data, type){
-            res = JSON.parse(data);
             //hent den første property value i vores objekt, vores book/movie array
-            const entryArray = res[Object.keys(res)[0]];
+            const entryArray = data[Object.keys(data)[0]];
             output.innerHTML = '';
                 for (let i in entryArray){
                     let newLi = document.createElement('li');
@@ -52,13 +45,12 @@
         // med den type af liste vi vil have og det output element listen skal vises i
         //hhv. den for bøger eller film
         bookBtn.addEventListener('click', function(){
-            getJSON('opg5.json', 'book');
+            getData('../10-10-async/opg5.json', 'book');
         });
         movieBtn.addEventListener('click', function(){
-            getJSON('movieOpg6.json', 'movie');
+            getData('../10-10-async/movieOpg6.json', 'movie');
         });
 
     </script>
-    
 </body>
 </html>

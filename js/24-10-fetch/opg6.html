@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        section {
+            border: 2px solid black;
+            padding: 20px;
+        }
+        li:nth-child(4) {
+            list-style-type: none; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Example users:</h1>
+    <ul id="output"></ul>
+
+    <script>
+        const outputEl = document.getElementById('output');
+
+        async function getUsers(){
+            const res = await fetch('https://reqres.in/api/users');
+            const users = await res.json();
+            console.log(users.data);
+
+            for(i in users.data){
+                const user = users.data[i];
+                let personData = document.createElement('section');
+                let personBtn = document.createElement('h2');
+                let info = document.createElement('ul');
+
+
+                personData.setAttribute('onClick', 'toggleUsers(this)');
+                personBtn.innerHTML = `${user.first_name}`;
+                info.innerHTML = `<li>First name: ${user.first_name}</li>
+                    <li>Last name: ${user.last_name}</li>
+                    <li>Email: ${user.email}</li>
+                    <li><img src=${user.avatar} ></li>`;
+                info.setAttribute('class', 'hidden');
+                personData.append(personBtn, info);
+                outputEl.append(personData);
+            }
+
+            
+        }
+
+        function toggleUsers(userSection){
+            userSection.firstChild.nextSibling.classList.toggle('hidden');
+        }
+
+        getUsers();
+
+    </script>
+    
+</body>
+</html>

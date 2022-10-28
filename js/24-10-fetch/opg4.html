@@ -28,22 +28,15 @@
 
         const validateInput = () => {
             let input = inputEl.value;
+            eOut.innerHTML = "";
             try{
-                if(input < min){
-                    throw 'number too low'
-                }
-                if (input > max){
-                   throw 'number too high'
-                }
-                if(numberInput.length === max){
-                    throw 'all numbers added'
-                }
-                if(numberInput.find(testValue)){
-                    throw 'number already in array';
-                }
+                if(input < min) throw 'number too low';
+                if (input > max) throw 'number too high';
+                if(numberInput.length === max) throw 'all numbers added';
+                if(numberInput.find(testValue)) throw 'number already in array';
                 
                 numberInput.push(Number(input));
-                output.innerHTML = `${input} added to array; array is now: ${numberInput}`
+                output.innerHTML = `${input} added to array; array is now: ${numberInput}`;
 
             } catch(e){
                 eOut.innerHTML = e;

@@ -36,7 +36,6 @@
                 let personBtn = document.createElement('h2');
                 let info = document.createElement('ul');
 
-
                 personData.setAttribute('onClick', 'toggleUsers(this)');
                 personBtn.innerHTML = `${user.first_name}`;
                 info.innerHTML = `<li>First name: ${user.first_name}</li>
@@ -46,9 +45,7 @@
                 info.setAttribute('class', 'hidden');
                 personData.append(personBtn, info);
                 outputEl.append(personData);
-            }
-
-            
+            }   
         }
 
         function toggleUsers(userSection){
